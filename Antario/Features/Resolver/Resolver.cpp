@@ -62,6 +62,11 @@ void Resolver::Resolve(C_BaseEntity* Entity)
 	static int HitShots[65];
 	static int HitShotsStored[65];
 
+	// entity speed.
+	auto speed = Entity->GetVelocity().Length2D();
+	auto flags = Entity->GetFlags();
+	auto delta = Entity->GetSimulationTime() - moving_sim[index];
+
 	if (stored_lby[index] != Entity->GetLowerBodyYaw())
 	{
 		old_lby[index] = stored_lby[index];
@@ -70,6 +75,12 @@ void Resolver::Resolve(C_BaseEntity* Entity)
 	}
 
 	lby_delta[index] = math.NormalizeYaw(stored_lby[index] - old_lby[index]);
+
+	// setup moving.
+	if (speed > 0.1f && flags & FL_ONGROUND) {
+		moving_sim[index] = Entity->GetSimulationTime(); // setup moving simulation
+	}
+
 
 	if (lby_changes[index])
 	{

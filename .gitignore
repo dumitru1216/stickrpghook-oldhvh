@@ -1,0 +1,8 @@
+
+*.ipch
+*.db-wal
+.vs/stickhook/v17/Browse.VC.db-shm
+*.db
+*.lock
+.vs/stickhook/FileContentIndex/8c07bd60-ecb1-4544-944b-f2d38534d837.vsidx
+.vs/stickhook/v17/Browse.VC.opendb
